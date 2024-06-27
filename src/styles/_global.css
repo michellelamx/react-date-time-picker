@@ -1,0 +1,48 @@
+:root {
+  --worksans-font: 'Work Sans', sans-serif;
+  --color-primary: hsl(37, 100%, 50%);
+  --color-text-primary: hsl(233, 18%, 19%);
+  --color-text-secondary: hsl(227, 6%, 72%);
+  --color-label-text: hsla(0, 0%, 0%, 0.87);
+  --color-white: hsl(0, 0%, 100%);
+  --color-input-border: hsl(0, 0%, 62%);
+  --color-input-border--hover: hsl(0, 0%, 18%);
+  --color-svg-primary: hsl(227, 6%, 72%);
+}
+
+html {
+  font: 62.5% / normal var(--worksans-font);
+  min-height: 100%;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: var(--worksans-font);
+  font-optical-sizing: auto;
+  font-size: 1.4rem;
+  font-style: normal;
+  height: 100%;
+  line-height: 1.2;
+  margin: 0;
+  position: relative;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.date-time-picker-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    margin-bottom: 4rem;
+  }
+}
+
+.date-time-picker-wrapper {
+  width: 30rem;
+}

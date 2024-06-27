@@ -1,0 +1,271 @@
+@import './_global.css';
+
+.date-time-picker {
+  font-family: var(--worksans-font);
+  width: 100%;
+
+  .date-label {
+    color: var(--color-label-text);
+
+    .placeholder-text {
+      color: var(--color-text-secondary);
+    }
+  }
+
+  .button-trigger {
+    align-items: center;
+    background-color: var(--color-white);
+    border: 0.1rem solid var(--color-input-border);
+    border-radius: 0.4rem;
+    display: flex;
+    font-family: inherit;
+    font-size: 1.6rem;
+    height: 5.6rem;
+    justify-content: space-between;
+    padding: 1.6rem 1.2rem;
+    width: 100%;
+
+    &:hover {
+      border: 0.1rem solid var(--color-input-border--hover);
+      cursor: pointer;
+    }
+
+    &:active,
+    &[data-state='open'] {
+      border: 0.1rem solid var(--color-primary);
+    }
+  }
+}
+
+.popover-content {
+  background-color: var(--color-white);
+  border: 0.1rem solid var(--color-input-border);
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 60rem;
+  z-index: 9;
+
+  .time-picker-container {
+    padding: 1.4rem 1.6rem 0.8rem;
+    width: 100%;
+  }
+
+  .date-picker-container {
+    border-right: 0.1rem solid hsl(223, 8%, 84%);
+    padding: 0.8rem 1.6rem;
+
+    .rdp {
+      margin: 0;
+    }
+
+    td {
+      height: 4rem;
+      text-align: center;
+      width: 4rem;
+    }
+  }
+
+  .section-header {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 0.4rem;
+  }
+
+  .hours,
+  .minutes {
+
+    input {
+      max-width: 2.4rem;
+
+      &.hours-input {
+        text-align: right;
+      }
+
+      &.minutes-input {
+        text-align: left;
+      }
+    }
+  }
+
+  .hours,
+  .minutes,
+  .am-pm {
+
+    input {
+      border: 0;
+      font-family: var(--worksans-font);
+      font-size: 1.6rem;
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        border: 0;
+        outline: 0;
+      }
+    }
+  }
+
+  .hours {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .am-pm {
+    width: auto;
+
+    button {
+      background-color: transparent;
+      border: 0;
+      font-family: var(--worksans-font);
+      font-size: 1.6rem;
+      padding-inline: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:focus,
+      &:focus-visible {
+        outline: 0;
+      }
+
+      svg {
+        display: none;
+      }
+    }
+
+    span {
+
+      &:focus,
+      &:focus-visible {
+        outline: 0;
+      }
+    }
+  }
+
+  .time-picker-wrapper {
+    align-items: center;
+    border: 0.1rem solid var(--color-input-border);
+    border-radius: 0.4rem;
+    display: flex;
+    height: 4rem;
+    padding: 0.8rem 1.2rem;
+    width: 100%;
+  }
+
+  .calendar-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.8rem;
+
+    .month-title {
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-left: 0.8rem;
+    }
+  }
+
+  .rdp-button {
+    border-color: transparent;
+    border-radius: 100%;
+    height: 3.6rem;
+    width: 3.6rem;
+
+    &[aria-selected='true'] {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+
+      &:hover {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+      }
+    }
+
+    &.nav-prev,
+    &.nav-next {
+
+      svg {
+        color: var(--color-svg-primary);
+        height: 2rem;
+        width: 2rem;
+      }
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.days-of-week {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.trigger-button {
+  font-size: 1.4rem;
+}
+
+.am-pm-picker {
+
+  .chevron-icon {
+    margin-left: 0.8rem;
+
+    img {
+      height: 1.2rem;
+      width: 1.2rem;
+    }
+  }
+}
+
+.am-pm-dropdown {
+  background-color: var(--color-white);
+  border: 0.1rem solid var(--color-input-border);
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
+  font-family: var(--worksans-font);
+  font-size: 1.4rem;
+  margin-top: 0.97rem;
+  position: relative;
+  width: 5.8rem;
+  z-index: 999;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .am-pm-option {
+    align-items: center;
+    display: flex;
+    font-family: var(--worksans-font);
+    height: 2.4rem;
+    justify-content: center;
+    padding-inline: 0.8rem;
+    text-align: center;
+    z-index: 999;
+
+    &:focus-visible,
+    &:focus {
+      outline: 0;
+    }
+
+    &[data-state='checked'] {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+
+      span:first-of-type {
+        display: none;
+      }
+    }
+
+    &:hover {
+      background-color: hsl(225, 100%, 95%);
+      color: var(--color-text-primary);
+    }
+  }
+}
