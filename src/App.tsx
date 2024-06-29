@@ -31,6 +31,14 @@ export const App = () => {
 					}}
 				/>
 			</div>
+			<div className='built-with'>
+				Built with:
+				<ul>
+					<li><a href='https://ui.shadcn.com/docs/components/date-picker' target='_blank'>shadcn Date Picker</a></li>
+					<li><a href='https://react-hook-form.com/'>React Hook Form</a></li>
+					<li><a href='https://zod.dev/'>Zod</a></li>
+				</ul>
+			</div>
 		</div>
   )
 }

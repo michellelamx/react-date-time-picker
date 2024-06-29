@@ -15,7 +15,7 @@ import {
   useState,
 } from 'react';
 
-export interface DateTimeInputProps
+export interface TimeInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
   picker: TimePickerType;
   date: Date | undefined;
@@ -25,7 +25,7 @@ export interface DateTimeInputProps
   onLeftFocus?: () => void;
 }
 
-export const DateTimeInput = forwardRef<HTMLInputElement, DateTimeInputProps>(
+export const TimeInput = forwardRef<HTMLInputElement, TimeInputProps>(
   (
     {
       className,
@@ -33,7 +33,7 @@ export const DateTimeInput = forwardRef<HTMLInputElement, DateTimeInputProps>(
       value,
       id,
       name,
-      date = new Date(new Date().setHours(23, 59, 0, 0)),
+      date = new Date(new Date().setHours(0, 0, 0, 0)),
       setDate,
       onChange,
       onKeyDown,
@@ -106,7 +106,7 @@ export const DateTimeInput = forwardRef<HTMLInputElement, DateTimeInputProps>(
         ref={ref}
         id={id || picker}
         name={name || picker}
-        className='date-time-input'
+        className={className}
         value={value || calculatedValue}
         onChange={(e) => {
           e.preventDefault();
@@ -123,4 +123,4 @@ export const DateTimeInput = forwardRef<HTMLInputElement, DateTimeInputProps>(
     );
   },
 );
-DateTimeInput.displayName = 'DateTimeInput';
+TimeInput.displayName = 'TimeInput';

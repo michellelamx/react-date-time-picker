@@ -1,4 +1,4 @@
-import { DateTimeInput } from './DateTimeInput';
+import { TimeInput } from './TimeInput';
 import { TimePeriodSelect } from './TimePeriodSelect';
 import { useRef } from 'react';
 
@@ -17,7 +17,7 @@ export function TimePicker({ date, setDate, onPeriodChange }: TimePickerProps) {
   return (
     <div className='time-picker-wrapper'>
       <div className='hours'>
-        <DateTimeInput
+        <TimeInput
           picker='12hours'
           date={date}
           setDate={setDate}
@@ -29,7 +29,7 @@ export function TimePicker({ date, setDate, onPeriodChange }: TimePickerProps) {
         <span>:</span>
       </div>
       <div className='minutes'>
-        <DateTimeInput
+        <TimeInput
           picker='minutes'
           id='minutes12'
           date={date}
