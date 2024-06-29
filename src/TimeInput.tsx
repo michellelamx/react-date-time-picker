@@ -1,3 +1,4 @@
+import { Input } from './primitives/input';
 import {
   Period,
   getArrowByType,
@@ -5,7 +6,6 @@ import {
   setDateByType,
   TimePickerType,
 } from './utils/DateTimeUtils';
-import { Input } from './primitives/input';
 import {
   forwardRef,
   InputHTMLAttributes,

@@ -1,6 +1,6 @@
 import { TimeInput } from './TimeInput';
 import { TimePeriodSelect } from './TimePeriodSelect';
-import { useRef } from 'react';
+import { useTimePickerRefs } from './hooks/useTimePickerRefs';
 
 interface TimePickerProps {
   date: Date | undefined;
@@ -9,9 +9,7 @@ interface TimePickerProps {
 }
 
 export function TimePicker({ date, setDate, onPeriodChange }: TimePickerProps) {
-  const minuteRef = useRef<HTMLInputElement>(null);
-  const hourRef = useRef<HTMLInputElement>(null);
-  const periodRef = useRef<HTMLButtonElement>(null);
+  const { refs, focusNext } = useTimePickerRefs();
   const period = date ? (date.getHours() >= 12 ? 'PM' : 'AM') : 'PM';
 
   return (
@@ -22,9 +20,9 @@ export function TimePicker({ date, setDate, onPeriodChange }: TimePickerProps) {
           date={date}
           setDate={setDate}
           period={period}
-          ref={hourRef}
+          ref={refs.hourRef}
           className='hours-input'
-          onRightFocus={() => minuteRef.current?.focus()}
+          onRightFocus={() => focusNext('hour', 'right')}
         />
         <span>:</span>
       </div>
@@ -35,18 +33,18 @@ export function TimePicker({ date, setDate, onPeriodChange }: TimePickerProps) {
           date={date}
           setDate={setDate}
           period={period}
-          ref={minuteRef}
+          ref={refs.minuteRef}
           className='minutes-input'
-          onLeftFocus={() => hourRef.current?.focus()}
-          onRightFocus={() => periodRef.current?.focus()}
+          onLeftFocus={() => focusNext('minute', 'left')}
+          onRightFocus={() => focusNext('minute', 'right')}
         />
       </div>
       <div className='am-pm'>
         <TimePeriodSelect
           period={period}
           onPeriodChange={onPeriodChange}
-          ref={periodRef}
-          onLeftFocus={() => minuteRef.current?.focus()}
+          ref={refs.periodRef}
+          onLeftFocus={() => focusNext('period', 'left')}
         />
       </div>
     </div>
