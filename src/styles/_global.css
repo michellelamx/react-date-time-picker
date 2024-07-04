@@ -3,6 +3,7 @@
   --color-primary: hsl(37, 100%, 50%);
   --color-text-primary: hsl(233, 18%, 19%);
   --color-text-secondary: hsl(227, 6%, 72%);
+  --color-bg--hover: hsl(216, 7%, 85%);
   --color-label-text: hsla(0, 0%, 0%, 0.87);
   --color-white: hsl(0, 0%, 100%);
   --color-input-border: hsl(0, 0%, 62%);
@@ -27,16 +28,19 @@ body {
   line-height: 1.2;
   margin: 0;
   position: relative;
+  text-wrap: balance;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 .date-time-picker-container {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   h2 {
     margin-bottom: 4rem;
@@ -45,4 +49,21 @@ body {
 
 .date-time-picker-wrapper {
   width: 30rem;
+}
+
+.built-with {
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6rem;
+
+  ul {
+    list-style: inside;
+    padding-inline-start: 0;
+    padding-left: 0;
+
+    li {
+
+    }
+  }
 }

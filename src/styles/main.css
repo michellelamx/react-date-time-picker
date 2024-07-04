@@ -4,6 +4,12 @@
   font-family: var(--worksans-font);
   width: 100%;
 
+  :focus,
+  :focus-visible {
+    outline-color: transparent;
+    outline-style: solid;
+  }
+
   .date-label {
     color: var(--color-label-text);
 
@@ -78,6 +84,7 @@
   .minutes {
 
     input {
+      font-family: var(--worksans-font);
       max-width: 2.4rem;
 
       &.hours-input {
@@ -96,7 +103,6 @@
 
     input {
       border: 0;
-      font-family: var(--worksans-font);
       font-size: 1.6rem;
 
       &:hover,
@@ -119,7 +125,6 @@
     button {
       background-color: transparent;
       border: 0;
-      font-family: var(--worksans-font);
       font-size: 1.6rem;
       padding-inline: 0;
 
@@ -175,6 +180,10 @@
     height: 3.6rem;
     width: 3.6rem;
 
+    &:hover:not([disabled]):not(.rdp-day_selected) {
+      background-color: var(--color-bg--hover);
+    }
+
     &[aria-selected='true'] {
       background-color: var(--color-primary);
       color: var(--color-white);
@@ -183,6 +192,17 @@
         background-color: var(--color-primary);
         color: var(--color-white);
       }
+    }
+
+    &:focus-visible:not([disabled]) {
+      border: none;
+      box-shadow: 0 0 0 0.3rem var(--color-white),
+                  0 0 0 0.6rem var(--color-primary);
+    }
+
+    &.rdp-day_selected:focus-visible {
+      box-shadow: 0 0 0 0.3rem var(--color-white),
+                  0 0 0 0.6rem var(--color-primary);
     }
 
     &.nav-prev,
@@ -213,6 +233,10 @@
 
 .am-pm-picker {
 
+  button {
+    font-family: var(--worksans-font);
+  }
+
   .chevron-icon {
     margin-left: 0.8rem;
 
@@ -228,7 +252,6 @@
   border: 0.1rem solid var(--color-input-border);
   border-bottom-left-radius: 0.4rem;
   border-bottom-right-radius: 0.4rem;
-  font-family: var(--worksans-font);
   font-size: 1.4rem;
   margin-top: 0.97rem;
   position: relative;
@@ -242,7 +265,6 @@
   .am-pm-option {
     align-items: center;
     display: flex;
-    font-family: var(--worksans-font);
     height: 2.4rem;
     justify-content: center;
     padding-inline: 0.8rem;
@@ -254,6 +276,11 @@
       outline: 0;
     }
 
+    &:hover {
+      background-color: var(--color-bg--hover);
+      color: var(--color-text-primary);
+    }
+
     &[data-state='checked'] {
       background-color: var(--color-primary);
       color: var(--color-white);
@@ -261,11 +288,11 @@
       span:first-of-type {
         display: none;
       }
+
+      &:hover {
+        background-color: var(--color-primary);
+      }
     }
 
-    &:hover {
-      background-color: hsl(225, 100%, 95%);
-      color: var(--color-text-primary);
-    }
   }
 }
