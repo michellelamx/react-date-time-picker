@@ -1,15 +1,29 @@
+import CalendarIcon from '@/assets/calendar-icon.svg';
+import { Calendar } from './calendar';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from './primitives/button';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from './primitives/popover';
+import '@/styles/main.css';
 import { TimePicker } from './TimePicker';
-import { Calendar } from './calendar';
-import './styles/main.css';
-import CalendarIcon from './assets/calendar-icon.svg';
 import { format } from 'date-fns';
 import { useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { z } from 'zod';
+
+const dateTimeNotPast = z.date().refine((date: Date) => {
+  const now = new Date();
+  return date >= now;
+}, {
+  message: 'Date cannot be in the past',
+});
+
+type FormData = {
+  date: Date | undefined;
+};
 
 export function DateTimePicker({
   date,
@@ -20,12 +34,17 @@ export function DateTimePicker({
 }) {
   const [period, setPeriod] = useState<string>('PM');
 
+  const { control, formState: { errors } } = useForm<FormData>({
+    resolver: zodResolver(z.object({ date: dateTimeNotPast })),
+    defaultValues: { date },
+  })
+
   const handleSelect = (newDay: Date | undefined) => {
     if (!newDay) return;
     if (!date) {
       // Set the new date with the selected period
-      const hours = period === 'PM' ? 23 : 11;
-      newDay.setHours(hours, 59, 0, 0); // Default to 11:59 PM or AM based on period
+      const hours = period === 'PM' ? 24 : 12;
+      newDay.setHours(hours, 0, 0, 0);
       setDate(newDay);
       return;
     }
@@ -74,12 +93,21 @@ export function DateTimePicker({
         </PopoverTrigger>
         <PopoverContent className='picker-popover'>
           <div className='date-picker-container'>
-            <Calendar
-              mode='single'
-              selected={date}
-              onSelect={(d) => handleSelect(d)}
-              initialFocus
-              showOutsideDays={false}
+            <Controller
+              name='date'
+              control={control}
+              render={({ field }) => (
+                <Calendar
+                  mode='single'
+                  selected={field.value}
+                  onSelect={(d) => {
+                    field.onChange(d)
+                    handleSelect(d)
+                  }}
+                  initialFocus
+                  showOutsideDays={false}
+                />
+              )}
             />
           </div>
           <div className='time-picker-container'>
@@ -90,6 +118,7 @@ export function DateTimePicker({
               onPeriodChange={handlePeriodChange}
             />
           </div>
+          {errors.date && <p style={{ color: 'red' }}>{errors.date.message}</p>}
         </PopoverContent>
       </Popover>
     </div>

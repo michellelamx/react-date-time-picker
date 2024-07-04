@@ -4,6 +4,12 @@
   font-family: var(--worksans-font);
   width: 100%;
 
+  :focus,
+  :focus-visible {
+    outline-color: transparent;
+    outline-style: solid;
+  }
+
   .date-label {
     color: var(--color-label-text);
 
@@ -186,6 +192,17 @@
         background-color: var(--color-primary);
         color: var(--color-white);
       }
+    }
+
+    &:focus-visible:not([disabled]) {
+      border: none;
+      box-shadow: 0 0 0 0.3rem var(--color-white),
+                  0 0 0 0.6rem var(--color-primary);
+    }
+
+    &.rdp-day_selected:focus-visible {
+      box-shadow: 0 0 0 0.3rem var(--color-white),
+                  0 0 0 0.6rem var(--color-primary);
     }
 
     &.nav-prev,
